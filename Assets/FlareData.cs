@@ -7,7 +7,6 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using ROSBridgeLib;
-using ROSBridgeLib.auv_msgs;
 using ROSBridgeLib.std_msgs;
 
 public class FlareData : MonoBehaviour {

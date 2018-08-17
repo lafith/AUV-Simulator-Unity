@@ -17,16 +17,17 @@ public class FlarePublisher : ROSBridgePublisher
 
     public static string GetMessageType()
     {
-        return "std_msgs/Float32Msg";
+        return "std_msgs/Float32";
     }
 
-    public static string ToYAMLString(Float32Msg msg)
-    {
-        return msg.ToYAMLString();
-    }
+	public static string ToYAMLString(Float32Msg msg)
+	{
+		return msg.ToYAMLString();
+	}
 
-    public new static ROSBridgeMsg ParseMessage(JSONNode msg)
-    {
-        return new Float32Msg(msg);
-    }
+	public new static ROSBridgeMsg ParseMessage(JSONNode msg)
+	{
+		return new Float32Msg(msg);
+	}
 }
+	

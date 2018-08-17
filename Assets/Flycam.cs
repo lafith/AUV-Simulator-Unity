@@ -44,38 +44,45 @@ public class Flycam : MonoBehaviour
 	void Start ()
 	{
 		Application.runInBackground = true;
-//		Screen.lockCursor = true;
+		//		Screen.lockCursor = true;
 	}
-
-	void Update ()
+	void mouserot()
 	{
-//		if (Input.GetKey (KeyCode.B)) {
-//			Debug.Log ("Bottom Camera");
-//			if (curCam == Cameras.Main) {
-//				curCam = Cameras.Bottom;
-//				difference = transform.position - GameObject.Find ("BottomCam").GetComponent<Transform> ().position;
-//				angleDifference = transform.rotation * GameObject.Find ("BottomCam").GetComponent<Transform> ().rotation;
-//				movable = false;
-//			}
-//			transform.position = GameObject.Find ("BottomCam").GetComponent<Transform> ().position;
-//			transform.rotation = GameObject.Find ("BottomCam").GetComponent<Transform> ().rotation;
-//
-//		}
-//
-//		if (Input.GetKey (KeyCode.M)) {
-//			if (curCam != Cameras.Main) {
-//				curCam = Cameras.Main;
-//				transform.position += difference;
-//				transform.rotation *= angleDifference;
-//			}
-//		}
-
 		rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
 		rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
-		rotationY = Mathf.Clamp (rotationY, -90, 90);
+		rotationY = Mathf.Clamp(rotationY, -90, 90);
 
 		transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
 		transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
+
+	}
+	void Update ()
+	{
+		//		if (Input.GetKey (KeyCode.B)) {
+		//			Debug.Log ("Bottom Camera");
+		//			if (curCam == Cameras.Main) {
+		//				curCam = Cameras.Bottom;
+		//				difference = transform.position - GameObject.Find ("BottomCam").GetComponent<Transform> ().position;
+		//				angleDifference = transform.rotation * GameObject.Find ("BottomCam").GetComponent<Transform> ().rotation;
+		//				movable = false;
+		//			}
+		//			transform.position = GameObject.Find ("BottomCam").GetComponent<Transform> ().position;
+		//			transform.rotation = GameObject.Find ("BottomCam").GetComponent<Transform> ().rotation;
+		//
+		//		}
+		//
+		//		if (Input.GetKey (KeyCode.M)) {
+		//			if (curCam != Cameras.Main) {
+		//				curCam = Cameras.Main;
+		//				transform.position += difference;
+		//				transform.rotation *= angleDifference;
+		//			}
+		//		}
+
+		if (Input.GetKey(KeyCode.Space))
+		{
+			mouserot();
+		}
 
 
 		if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))

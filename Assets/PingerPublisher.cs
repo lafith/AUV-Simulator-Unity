@@ -17,7 +17,7 @@ public class PingerPublisher : ROSBridgePublisher
 
     public static string GetMessageType()
     {
-        return "std_msgs/Float32Msg";
+        return "std_msgs/Float32";
     }
 
     public static string ToYAMLString(Float32Msg msg)
