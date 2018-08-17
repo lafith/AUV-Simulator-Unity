@@ -1,6 +1,6 @@
 # AUV-Simulator
 
-![Screenshot](https://github.com/aryaman-gupta/AUV-Simulator/blob/master/Screenshots/Screenshot1.png)
+![Screenshot](https://github.com/Lafith/AUV-Simulator/blob/d08b6777de9930647e79187df2ca2a671fd92a62/Screenshots/auv.png)
 
 A simulator used to test control algorithms written for an Autonomous Underwater Vehicle
 
@@ -14,34 +14,30 @@ The code for simulating underwater forces like planing force, slamming force etc
 
 http://www.habrador.com/tutorials/unity-boat-tutorial/
 
+
+STEPS:
+
+The executable files are in Builds.zip.
+For Windows,an installer-AUV Simulator setup.exe-is available inside the Builds.zip.
+
 To use:
-- Once the IP addresses and Port numbers are set correctly, run the simulator. Then, run the control algorithm, set up a client connection to the simulator, and run its server. Finally, press the space bar on the simulator to set up its client connection with the control algorithm.
+- Start AUV Simulator.exe(in Windows) or AUV Simulator.x86_64(in Linux).
+- In the Menu enter IP Address,if control algorithm runs in another laptop.Press 'Local Host' button if the control algorithm runs on the same laptop.
+- Select the Arena from the SAUVC,SAVe and ROBOSUB.  
+- Then, run the control algorithm, set up a client connection to the simulator, and run its server**.
 - The control algorithm must send to the simulator forces to be applied at each thruster, as float values. The number, position, and orientation of thrusters on the vehicle can easily be changed.
 - The simulator provides simulated sensor values as feedback. A total of 8 floating point values are sent, with two digit decimal places, three digits before the decimal, and the sign. This is mentioned for easy decoding of the feedback. The eight values are: the orientation of the vehicle in the x, y, and z axes respectively, the acceleration of the vehicle in the x, y, and z axes respectively, the depth of the vehicle under water, and the forward velocity of the vehicle in its local frame.
 - To use camera images as feedback, uncomment the like '#usePics' in ControlThrusters.cs. You must decode the image from the values of the edges.
-
-steps:
-Add these dependencies if not added
-ROS Qt Build - sudo apt-get install ros-kinetic-qt-build
-Point Grey Camera Driver - sudo apt-get install ros-kinetic-pointgrey-camera-driver
-Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server
-
-Install AUV Simulator using the installer available in Builds.zip.
+- To move around the arena:
+	- Use WASD and Arrow keys for moving around.Hold down Left or Right Shift for a faster movment.Hold Left or Right Ctrl for a slower movment.
+	- 'Q' for moving/climbing up and 'E' for moving/climbing down.
+	- Hold Space Bar and move mouse for rotation.
+- To view the Log viewer/Console Logs-using the mouse click and drag to make a circular gesture.
 
 
-start AUV simulator.exe
-enter the IP address
-
-run the command roslaunch rosbridge_server rosbridge_websocket.launch
-*(pre-requisite rosbridge library should be installed on your linux distribution )
- 
-run rosun watchdog watchdog
-
-run simulator_receive_image simulator_receive_image
-
-in AUV simulator.exe : *IN THE MENU YOU CAN TYPE THE IP ADDRESS OR JUST CLICK ON THE LOCAL HOST BUTTON FOR SETTING UP THE WEBSOCKET CONNECTION.
-
-*USE MOUSE AND ARROW KEYS TO MOVE AROUND THE ARENA.
-
-*TO VIEW THE LOG VIEWER/CONSOLE LOGS ,USING MOUSE- CLICK AND DRAG TO MAKE A CIRCULAR GESTURE.
-
+**In the ROS end:
+- Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server.
+- Run the command roslaunch rosbridge_server rosbridge_websocket.launch.
+- Run rosun watchdog watchdog.
+- Run simulator_receive_image simulator_receive_image.
+  
