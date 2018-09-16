@@ -33,7 +33,7 @@ To use:
 	- 'Q' for moving/climbing up and 'E' for moving/climbing down.
 	- Hold Space Bar and move mouse for rotation.
 - To view the Log viewer/Console Logs-using the mouse click and drag to make a circular gesture.
-
+- Threshold Max and Min can be changed from panels,which can be opened from the dropdown list-'Adjust Threshold'.
 
 **In the ROS end:
 - Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server.
