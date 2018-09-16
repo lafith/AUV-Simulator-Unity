@@ -57,9 +57,9 @@ public class FlareData : MonoBehaviour {
             float d = FlareAngle();
             flaremsg = new Float32Msg(d);
             obj.GetComponent<ROS_Initialize>().ros.Publish(FlarePublisher.GetMessageTopic(), flaremsg);
-            Debug.Log("Sending: FlareAngle = " + d);
+ /*           Debug.Log("Sending: FlareAngle = " + d);
             Debug.Log("Sending to topic: " + FlarePublisher.GetMessageTopic());
-            
+  */          
         }
         catch (Exception e)
         {

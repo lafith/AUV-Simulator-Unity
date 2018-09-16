@@ -72,8 +72,9 @@ public class PingerData : MonoBehaviour {
             float p = PingerAngle();
             pingermsg = new Float32Msg(p);
             obj.GetComponent<ROS_Initialize>().ros.Publish(PingerPublisher.GetMessageTopic(), pingermsg);
-            Debug.Log("Sending: PingerAngle = " + p);
+       /*     Debug.Log("Sending: PingerAngle = " + p);
             Debug.Log("Sending to topic: " + PingerPublisher.GetMessageTopic());
+            */
         }
         catch(Exception e)
         {
