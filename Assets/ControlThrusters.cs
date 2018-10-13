@@ -203,25 +203,26 @@ public class ControlThrusters : MonoBehaviour {
 			prevRot = CurRot;
 
 			float modifiedDepth = (-transform.parent.position.y*15.0f)+930.0f;
-          
-           #region for old controller
+
+            #region for old controller
             //Uncomment for old controller
             //			float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
-           // 			float[] linear = new float[]{CurAcc.x, -CurAcc.z, modifiedDepth};
-            
-           // 			msg = new CombinedMsg(angular, linear);
+            // 			float[] linear = new float[]{CurAcc.x, -CurAcc.z, modifiedDepth};
+
+            // 			msg = new CombinedMsg(angular, linear);
             #endregion
-           
-           //For new controller
+
+            #region for new controller
+            //For new controller
             float[] velocity = new float[]{curVelocity.x, -curVelocity.z, -curVelocity.y};
 			float[] acceleration = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
 			float[] angle = new float[]{-CurRot.x, CurRot.z, CurRot.y};
 			float[] omega = new float[]{-Omega.x, Omega.z, Omega.y};
 
 			msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
-            
-			#if notSelf
-			Debug.Log ("Sending: Depth = " + modifiedDepth);
+            #endregion
+#if notSelf
+            Debug.Log ("Sending: Depth = " + modifiedDepth);
 			Debug.Log ("Sending: Force = " + CurAcc.y * 15000);
 			Debug.Log("Sending to topic: " + ROSPublisher.GetMessageTopic());
 			obj.GetComponent<ROS_Initialize> ().ros.Publish(ROSPublisher.GetMessageTopic(), msg);
