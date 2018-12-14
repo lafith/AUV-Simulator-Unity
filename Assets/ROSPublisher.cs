@@ -8,8 +8,7 @@ using SimpleJSON;
 
 public class ROSPublisher : ROSBridgePublisher  {
 
-	
-    // The following three functions are important
+	// The following three functions are important
 	public static string GetMessageTopic() {
 		return "/imu_data";
 	}
@@ -18,11 +17,11 @@ public class ROSPublisher : ROSBridgePublisher  {
 		return "new_hammerhead_control/ctrl_input";
 	}
 
-	public static string ToYAMLString(Ctrl_InputMsg msg) {
+	public static string ToYAMLString(CombinedMsg msg) {
 		return msg.ToYAMLString();
 	}
 
 	public new static ROSBridgeMsg ParseMessage(JSONNode msg) {
-		return new Ctrl_InputMsg(msg);
+		return new CombinedMsg(msg);
 	}    
 }

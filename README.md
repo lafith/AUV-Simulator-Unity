@@ -38,6 +38,6 @@ To use:
 **In the ROS end:
 - Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server.
 - Run the command roslaunch rosbridge_server rosbridge_websocket.launch.
-- Run rosrun watchdog watchdog.
+- Run rosun watchdog watchdog.
 - Run simulator_receive_image simulator_receive_image.
   

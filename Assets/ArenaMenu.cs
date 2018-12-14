@@ -8,12 +8,16 @@ public class ArenaMenu : MonoBehaviour {
     
     public Rigidbody rb;
     public Vector3 v;
+    public Vector3 r;
     public Vector2 fcp;
     public Vector2 bcp;
     public Dropdown dp;
     public GameObject FCamPanel;
     public GameObject BCamPanel;
-
+    //public Text title;
+    public Text xaxis;
+    //public Text yaxis;
+    //public Text zaxis;
     List<string> ls = new List<string>() { "AdjustThreshold", "FrontCam", "BottomCam" };
     //stores AUV's initial position 
     public void Start()
@@ -22,10 +26,18 @@ public class ArenaMenu : MonoBehaviour {
         fcp = FCamPanel.transform.position;
         bcp = BCamPanel.transform.position;
         v = rb.transform.position;
+        r = rb.transform.localEulerAngles;
         Populate();
+        //title.text = "   POSITION   ANGLE";
+        
+    }
 
-    }   
-
+    public void Update()
+    {
+        xaxis.text = "   POSITION   ANGLE"+"\n"+"X    " + rb.transform.position.x.ToString("F2") + "          " + rb.transform.localEulerAngles.x.ToString("F2")+"\n"+ "Y    " + rb.transform.position.y.ToString("F2") + "          " + rb.transform.localEulerAngles.y.ToString("F2")+"\n"+"Z    " + rb.transform.position.z.ToString("F2") + "         " + rb.transform.localEulerAngles.z.ToString("F2");
+        //yaxis.text ="Y    " + rb.transform.position.y.ToString("F2") + "        " + rb.transform.localEulerAngles.y.ToString("F2");
+        //zaxis.text = "Z    " + rb.transform.position.z.ToString("F2") + "        " + rb.transform.localEulerAngles.z.ToString("F2");
+    }
     public void Populate()
     {
         dp.AddOptions(ls);
@@ -41,7 +53,7 @@ public class ArenaMenu : MonoBehaviour {
     {
 
         rb.transform.position = v;
-        rb.transform.rotation = Quaternion.Euler(0, 0, 0);
+        rb.transform.localEulerAngles = r;
         rb.velocity = new Vector3(0, 0, 0);
     }
 

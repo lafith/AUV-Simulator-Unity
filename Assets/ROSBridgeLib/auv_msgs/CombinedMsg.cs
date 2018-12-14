@@ -7,10 +7,12 @@ namespace ROSBridgeLib {
 	namespace auv_msgs {
 		public class CombinedMsg : ROSBridgeMsg {
 			private float[] angular, linear;
+            private float depth;
 
-			public CombinedMsg(float[] _angular, float[] _linear) {
+			public CombinedMsg(float[] _angular, float[] _linear,float _depth) {
 				angular = _angular;
 				linear = _linear;
+                depth = _depth;
 			}
 
 			public CombinedMsg(JSONNode msg)
@@ -24,7 +26,8 @@ namespace ROSBridgeLib {
 				for (int i = 0; i < linear.Length; i++) {
 					linear[i] = float.Parse(msg["linear"][i]);
 				}
-			}
+                depth = float.Parse(msg["depth"]);
+            }
 
 			public static string getMessageType() {
 				return "synchronizer/Combined";
@@ -38,7 +41,11 @@ namespace ROSBridgeLib {
 				return linear;
 			}
 
-			public override string ToString ()
+            public float GetDepth()
+            {
+                return depth;
+            }
+            public override string ToString ()
 			{
 				string array = "[";
 				for (int i = 0; i < angular.Length; i++) {
@@ -55,7 +62,7 @@ namespace ROSBridgeLib {
 						array2 += ",";
 				}
 				array2 += "]";
-				return "CombinedMsg [angular=" + array + ", linear=" + array2 + "]";
+				return "CombinedMsg [angular=" + array + ", linear=" + array2 + ", depth=" + depth + "]";
 			}
 
 			public override string ToYAMLString() {
@@ -74,7 +81,7 @@ namespace ROSBridgeLib {
 						array2 += ",";
 				}
 				array2 += "]";
-				return "{\"angular\" : " + array + ", \"linear\" : " + array2 + "}";
+				return "{\"angular\" : " + array + ", \"linear\" : " + array2 +", \"depth\" : " + depth  + "}";
 			}
 
 		}

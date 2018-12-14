@@ -194,7 +194,7 @@ public class ControlThrusters : MonoBehaviour {
 			if(CurRot.z > 180.0f)
 				CurRot.z -= 360.0f;
 
-			CurRot *= (float)Math.PI/180.0f;
+            //CurRot *= (float)Math.PI / 180.0f;
 			Vector3 curVelocity = transform.parent.transform.InverseTransformVector(transform.parent.GetComponent<Rigidbody>().velocity);
 			Vector3 CurAcc = (curVelocity - prevVelocity)/Time.deltaTime;
 			prevVelocity = curVelocity;
@@ -207,9 +207,10 @@ public class ControlThrusters : MonoBehaviour {
             #region for old controller
             //Uncomment for old controller
             //			float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
-            // 			float[] linear = new float[]{CurAcc.x, -CurAcc.z, modifiedDepth};
+             //			float[] linear = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
+               //         float depth = modifiedDepth;
 
-            // 			msg = new CombinedMsg(angular, linear);
+             	//		msg = new CombinedMsg(angular, linear,depth);
             #endregion
 
             #region for new controller
@@ -222,6 +223,7 @@ public class ControlThrusters : MonoBehaviour {
 			msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
             #endregion
 #if notSelf
+            //Debug.Log("sending angular")
             Debug.Log ("Sending: Depth = " + modifiedDepth);
 			Debug.Log ("Sending: Force = " + CurAcc.y * 15000);
 			Debug.Log("Sending to topic: " + ROSPublisher.GetMessageTopic());
