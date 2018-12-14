@@ -22,6 +22,6 @@ public class ROSPublisher : ROSBridgePublisher  {
 	}
 
 	public new static ROSBridgeMsg ParseMessage(JSONNode msg) {
-		return new CombinedMsg(msg);
+		return new Ctrl_InputMsg(msg);
 	}    
 }
