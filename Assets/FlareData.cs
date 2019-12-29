@@ -7,7 +7,9 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using ROSBridgeLib;
+using ROSBridgeLib.auv_msgs;
 using ROSBridgeLib.std_msgs;
+
 
 public class FlareData : MonoBehaviour {
 
@@ -20,8 +22,8 @@ public class FlareData : MonoBehaviour {
         obj = GameObject.Find("Main Camera");
 
         //placing the flare at a random position in a specific area :
-        float rz = UnityEngine.Random.Range(-70, 70);
-        if (rz < 20 && rz > -20)
+        float rz = UnityEngine.Random.Range(-80,-7);
+        if (rz < -27 && rz > -58)
         {
             rz = rz + 20;
         }
@@ -57,7 +59,7 @@ public class FlareData : MonoBehaviour {
             float d = FlareAngle();
             flaremsg = new Float32Msg(d);
             obj.GetComponent<ROS_Initialize>().ros.Publish(FlarePublisher.GetMessageTopic(), flaremsg);
- /*           Debug.Log("Sending: FlareAngle = " + d);
+ /*           Debug.Log("Sending: FlareAngle = " + d);s
             Debug.Log("Sending to topic: " + FlarePublisher.GetMessageTopic());
   */          
         }

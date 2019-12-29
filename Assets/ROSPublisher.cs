@@ -10,11 +10,11 @@ public class ROSPublisher : ROSBridgePublisher  {
 
 	// The following three functions are important
 	public static string GetMessageTopic() {
-		return "/imu_data";
+		return "/combined";
 	}
 
 	public static string GetMessageType() {
-		return "new_hammerhead_control/ctrl_input";
+		return "synchronizer/Combined";
 	}
 
 	public static string ToYAMLString(CombinedMsg msg) {
@@ -22,6 +22,6 @@ public class ROSPublisher : ROSBridgePublisher  {
 	}
 
 	public new static ROSBridgeMsg ParseMessage(JSONNode msg) {
-		return new Ctrl_InputMsg(msg);
+		return new CombinedMsg(msg);
 	}    
 }

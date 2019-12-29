@@ -21,11 +21,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("SAVe");
         ip = input.text.ToString();
     }
-    /* public void toscene2()
+     public void toscene2()
      {
-         SceneManager.LoadScene("scene2");
+         SceneManager.LoadScene("robosub");
           ip = input.text.ToString();
-     }*/
+     }
 
     public void OnLocalHost()
     {

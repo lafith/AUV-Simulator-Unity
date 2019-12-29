@@ -711,9 +711,9 @@ PlayerSettings:
     Unity_Ads: 0
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 2def6264-ca94-4167-8c0d-85c4e763cb0c
-  projectName: AUV Simulator
-  organizationId: aryaman1994
+  cloudProjectId: d3ab57f4-b7f7-4b12-b59c-0abf71590b82
+  projectName: AUV Simulator-Old Controller
+  organizationId: lafith
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

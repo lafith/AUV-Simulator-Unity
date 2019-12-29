@@ -14,7 +14,7 @@ public class Buoyancy : MonoBehaviour {
 	GameObject COB_Pos;
     // public Rigidbody hull;
     //public Rigidbody frame;
-    public float v = Mathf.Pow(2.52f, 3f);
+   // public float v = Mathf.Pow(2.52f, 3f);
     void Start()
 	{
        
@@ -41,7 +41,7 @@ public class Buoyancy : MonoBehaviour {
         // Debug.Log((waterLevel - y).ToString());
         //thruster.AddForce(100, 0, 0);
 
-        Vector3 MaxUpthrust =v * rho * Physics.gravity * -1000f;
+        Vector3 MaxUpthrust =l*h*b * rho * Physics.gravity * -1000f;
 		if (waterLevel - y > h/2)
 			upthrust = MaxUpthrust;
 		else if (y - waterLevel > h/2)

@@ -19,54 +19,9 @@ using UnityEngine.SceneManagement;
 
 public class ControlThrusters : MonoBehaviour {
 
-      #region Variable Initializations
-    /*   int ImageWidth = 648;
-       int ImageHeight = 488;
-       GameObject bottomCam;
-       GameObject frontCam;
-       RenderTexture bottomImage;
-       RenderTexture frontImage;
-       Texture2D imageToSend;
-       Texture2D imageToSend2;
-
-      
-       StringMsg imgMsg;
-       #endregion
-
-
-       #region panel variables
-       public float frontCamThreshHigh_R = 175;
-       public float frontCamThreshHigh_G = 175;
-       public float frontCamThreshHigh_B = 175;
-       public float frontCamThreshLow_R = 100;
-       public float frontCamThreshLow_G = 100;
-       public float frontCamThreshLow_B = 100;
-       public float bottomCamThreshHigh_R = 175;
-       public float bottomCamThreshHigh_G = 175;
-       public float bottomCamThreshHigh_B = 175;
-       public float bottomCamThreshLow_R = 100;
-       public float bottomCamThreshLow_G = 100;
-       public float bottomCamThreshLow_B = 100;
-
-       public Text FRHigh;
-       public Text FGHigh;
-       public Text FBHigh;
-       public Text FRLow;
-       public Text FGLow;
-       public Text FBLow;
-       public Text BRHigh;
-       public Text BGHigh;
-       public Text BBHigh;
-       public Text BRLow;
-       public Text BGLow;
-       public Text BBLow;
-      
-    */
-    #endregion
-      
  //  bool firstSend = true;
 
-    Ctrl_InputMsg msg;
+    CombinedMsg msg;
     GameObject obj;
     public bool Lock = false;
     Vector3 prevVelocity = Vector3.zero;
@@ -77,83 +32,7 @@ public class ControlThrusters : MonoBehaviour {
 		obj = GameObject.Find ("Main Camera");
   		prevRot = transform.parent.transform.rotation.eulerAngles;          
     }
-
-    /*   #region slider functions
-
-       public void AdjustFCamThreshHigh_R(float i)
-       {
-           frontCamThreshHigh_R = (int)i;
-           FRHigh.text = frontCamThreshHigh_R.ToString();
-       }
-
-       public void AdjustFCamThreshHigh_G(float i)
-       {
-           frontCamThreshHigh_G = (int)i;
-           FGHigh.text = frontCamThreshHigh_G.ToString();
-       }
-
-       public void AdjustFCamThreshHigh_B(float i)
-       {
-           frontCamThreshHigh_B = (int)i;
-           FBHigh.text = frontCamThreshHigh_B.ToString();
-       }
-
-       public void AdjustFCamThreshLow_R(float i)
-       {
-           frontCamThreshLow_R = (int)i;
-           FRLow.text = frontCamThreshLow_R.ToString();
-       }
-
-       public void AdjustFCamThreshLow_G(float i)
-       {
-           frontCamThreshLow_G = (int)i;
-           FGLow.text = frontCamThreshLow_G.ToString();
-       }
-
-       public void AdjustFCamThreshLow_B(float i)
-       {
-           frontCamThreshLow_B = (int)i;
-           FBLow.text = frontCamThreshLow_B.ToString();
-       }
-
-       public void AdjustBCamThreshHigh_R(float i)
-       {
-           bottomCamThreshHigh_R= (int)i;
-           BRHigh.text = bottomCamThreshHigh_R.ToString();
-       }
-
-       public void AdjustBCamThreshHigh_G(float i)
-       {
-           bottomCamThreshHigh_G = (int)i;
-           BGHigh.text = bottomCamThreshHigh_G.ToString();
-       }
-
-       public void AdjustBCamThreshHigh_B(float i)
-       {
-           bottomCamThreshHigh_B = (int)i;
-           BBHigh.text = bottomCamThreshHigh_B.ToString();
-       }
-
-       public void AdjustBCamThreshLow_R(float i)
-       {
-           bottomCamThreshLow_R = (int)i;
-           BRLow.text = bottomCamThreshLow_R.ToString();
-       }
-
-       public void AdjustBCamThreshLow_G(float i)
-       {
-           bottomCamThreshLow_G = (int)i;
-           BGLow.text = bottomCamThreshLow_G.ToString();
-       }
-
-       public void AdjustBCamThreshLow_B(float i)
-       {
-           bottomCamThreshLow_B = (int)i;
-           BBLow.text = bottomCamThreshLow_B.ToString();
-       }
-       #endregion
-       */
-  
+ 
     /* Applies the forces received from the control algorithm to the thrusters.
 	 * */
 
@@ -203,24 +82,25 @@ public class ControlThrusters : MonoBehaviour {
 			prevRot = CurRot;
 
 			float modifiedDepth = (-transform.parent.position.y*15.0f)+930.0f;
+            //float modifiedDepth = -(transform.parent.position.y-1.102056f)/10.0f;
 
             #region for old controller
             //Uncomment for old controller
-            //			float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
-             //			float[] linear = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
-               //         float depth = modifiedDepth;
+            float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
+             			float[] linear = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
+                        float depth = modifiedDepth;
 
-             	//		msg = new CombinedMsg(angular, linear,depth);
+             			msg = new CombinedMsg(angular, linear,depth);
             #endregion
 
             #region for new controller
             //For new controller
-            float[] velocity = new float[]{curVelocity.x, -curVelocity.z, -curVelocity.y};
-			float[] acceleration = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
-			float[] angle = new float[]{-CurRot.x, CurRot.z, CurRot.y};
-			float[] omega = new float[]{-Omega.x, Omega.z, Omega.y};
+         //   float[] velocity = new float[]{curVelocity.x, -curVelocity.z, -curVelocity.y};
+			//float[] acceleration = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
+			//float[] angle = new float[]{-CurRot.x, CurRot.z, CurRot.y};
+			//float[] omega = new float[]{-Omega.x, Omega.z, Omega.y};
 
-			msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
+			//msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
             #endregion
 #if notSelf
             //Debug.Log("sending angular")

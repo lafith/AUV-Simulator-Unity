@@ -1,6 +1,6 @@
 # AUV-Simulator
 
-![auv](/uploads/b0bd46d8e22725cbef3a3eb5af3d82cd/auv.png)
+![auv](https://user-images.githubusercontent.com/39316548/64912007-9d678300-d746-11e9-838c-53a10896be5b.png)
 
 A simulator used to test control algorithms written for an Autonomous Underwater Vehicle
 
@@ -37,7 +37,7 @@ To use:
 
 **In the ROS end:
 - Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server.
-- Run the command: roslaunch rosbridge_server rosbridge_websocket.launch.
-- Run: rosrun watchdog watchdog.
-- Run: rosrun simulator_receive_image simulator_receive_image.
+- Run the command roslaunch rosbridge_server rosbridge_websocket.launch.
+- Run rosun watchdog watchdog.
+- Run simulator_receive_image simulator_receive_image.
   
