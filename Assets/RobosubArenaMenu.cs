@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class RobosubArenaMenu : MonoBehaviour {
     public Rigidbody rb;
-    public Rigidbody torpedo;
     public Vector3 semi_pos;
     public Vector3 init_rot;
     public Vector3 final_pos;
     public Vector3 cam_pos;
-    public Vector3 torpedo_pos;
     public Vector3 cam_rot;
     //public GameObject semifinal_dock;
     //public GameObject final_dock;
@@ -19,7 +17,6 @@ public class RobosubArenaMenu : MonoBehaviour {
     public Text xaxis;
     public GameObject bouy_1;
     public GameObject bouy_2;
-    public GameObject pre_qual_dock;
     // Use this for initialization
     void Start () {
         semi_pos = rb.transform.position;
@@ -27,38 +24,24 @@ public class RobosubArenaMenu : MonoBehaviour {
         //final_pos = final_dock.transform.position;
         //semi_pos = semifinal_dock.transform.position;
         cam_pos = semi_pos- cam.transform.position;
-        torpedo_pos = semi_pos - torpedo.transform.position;
         cam_rot = cam.transform.localEulerAngles;
 	}
 
     public void semifinal()
     {
         rb.velocity = new Vector3(0, 0, 0);
-        torpedo.velocity = new Vector3(0, 0, 0);
         rb.transform.position = semi_pos;
         cam.transform.position = semi_pos - cam_pos;
-        torpedo.transform.position = semi_pos - torpedo_pos;
         rb.transform.localEulerAngles = init_rot;
         cam.transform.localEulerAngles = cam_rot;
     }
     public void final()
     {
         rb.velocity = new Vector3(0, 0, 0);
-        torpedo.velocity = new Vector3(0, 0, 0);
         rb.transform.position = semi_pos+new Vector3(40,0,0);
         cam.transform.position = rb.transform.position - cam_pos;
-        torpedo.transform.position = rb.transform.position - torpedo_pos;
         rb.transform.localEulerAngles = init_rot;
         cam.transform.localEulerAngles = cam_rot;
-    }
-
-    public void preQual()
-    {
-        rb.velocity = new Vector3(0, 0, 0);
-        rb.transform.position = pre_qual_dock.transform.position + new Vector3(8, 0, 0);
-        cam.transform.position = rb.transform.position - new Vector3(5,-2,0);
-        rb.transform.localEulerAngles = init_rot+new Vector3(0,90,0);
-        cam.transform.localEulerAngles = cam_rot+new Vector3(0,90,0);
     }
     public void main_menu()
     {

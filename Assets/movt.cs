@@ -6,7 +6,6 @@ public class movt : MonoBehaviour
 {
 
     public Rigidbody rb;
-    public Rigidbody torpedo;
     //VelocityMsg msg;
     //GameObject obj;
 
@@ -45,11 +44,6 @@ public class movt : MonoBehaviour
         {
             rb.AddRelativeTorque(0, -90000f * Time.deltaTime, 0);
         }
-        else if (Input.GetKey("t"))
-        {
-            torpedo.AddRelativeForce(0,0, 800 * Time.deltaTime);
-        }
-
         
     }
     

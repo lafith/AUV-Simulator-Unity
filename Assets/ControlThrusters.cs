@@ -82,11 +82,10 @@ public class ControlThrusters : MonoBehaviour {
 			prevRot = CurRot;
 
 			float modifiedDepth = (-transform.parent.position.y*15.0f)+930.0f;
-            //float modifiedDepth = -(transform.parent.position.y-1.102056f)/10.0f;
 
             #region for old controller
             //Uncomment for old controller
-            float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
+            			float[] angular = new float[]{-CurRot.x, CurRot.z, CurRot.y};
              			float[] linear = new float[]{CurAcc.x, -CurAcc.z, -CurAcc.y};
                         float depth = modifiedDepth;
 
