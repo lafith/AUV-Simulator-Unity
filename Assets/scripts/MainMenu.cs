@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     //to load difft scenes:
     public void toscene0()
     {
-        SceneManager.LoadScene("scene0");
+        SceneManager.LoadScene("SAUVC");
         ip = input.text.ToString();
     }
 
@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
     }
      public void toscene2()
      {
-         SceneManager.LoadScene("robosub");
+         SceneManager.LoadScene("ROBOSUB");
           ip = input.text.ToString();
      }
 

@@ -7,14 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/scenes/menu.unity
-    guid: c199ba76c27f26048be31f0effb7864f
+    guid: 8eff22bb135f1456c86dc421a5cf4bb1
   - enabled: 1
-    path: Assets/scenes/Scene0.unity
-    guid: d1d8d46d425bdae45b79e29b6f347593
+    path: Assets/scenes/SAUVC.unity
+    guid: 88d449e83fb80cb65b4b2a897c21fb48
   - enabled: 1
     path: Assets/scenes/SAVe.unity
-    guid: 27462ad8a49ee49468dcde0fe7fbee69
+    guid: b7d95c7bfce174ddd9b4bc9a21421251
   - enabled: 1
-    path: Assets/scenes/robosub.unity
+    path: Assets/scenes/ROBOSUB.unity
     guid: 8a5ef1aad5d6cc544840f3c525b7faa2
   m_configObjects: {}

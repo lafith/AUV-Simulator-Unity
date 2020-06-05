@@ -81,7 +81,7 @@ public class ControlThrusters : MonoBehaviour {
 			Vector3 Omega = transform.parent.transform.InverseTransformVector(transform.parent.GetComponent<Rigidbody>().angularVelocity);
 			prevRot = CurRot;
 
-			float modifiedDepth = (-transform.parent.position.y*15.0f)+930.0f;
+			float modifiedDepth = (-transform.parent.position.y*15.0f);//+930.0f;
 
             #region for old controller
             //Uncomment for old controller
