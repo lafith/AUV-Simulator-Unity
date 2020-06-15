@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/ROBOSUB.unity
     guid: 8a5ef1aad5d6cc544840f3c525b7faa2
+  - enabled: 1
+    path: Assets/scenes/testscene.unity
+    guid: 25899d6dc93de05178e86ed601807da3
   m_configObjects: {}

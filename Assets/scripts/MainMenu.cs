@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
     }
      public void toscene2()
      {
-         SceneManager.LoadScene("ROBOSUB");
+         SceneManager.LoadScene("testscene");
           ip = input.text.ToString();
      }
 
