@@ -108,16 +108,16 @@ public class Pinger_Flare : MonoBehaviour {
             float p = PingerAngle();
             pingermsg = new Float32Msg(p);
             obj.GetComponent<ROS_Initialize>().ros.Publish(PingerPublisher.GetMessageTopic(), pingermsg);
-               Debug.Log("Sending: PingerAngle = " + p);
-                 Debug.Log("Sending to topic: " + PingerPublisher.GetMessageTopic());
+            //   Debug.Log("Sending: PingerAngle = " + p);
+            //    Debug.Log("Sending to topic: " + PingerPublisher.GetMessageTopic());
                  
 
             float d = FlareAngle();
             flaremsg = new Float32Msg(d);
             obj.GetComponent<ROS_Initialize>().ros.Publish(FlarePublisher.GetMessageTopic(), flaremsg);
 
-            Debug.Log("Sending: FlareAngle = " + d);
-            Debug.Log("Sending to topic: " + FlarePublisher.GetMessageTopic());
+            //Debug.Log("Sending: FlareAngle = " + d);
+            //Debug.Log("Sending to topic: " + FlarePublisher.GetMessageTopic());
              
         }
         catch (Exception e)

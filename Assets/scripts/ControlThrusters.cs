@@ -38,8 +38,8 @@ public class ControlThrusters : MonoBehaviour {
 
     public void AddForces()
 	{
-
 		short[] ForceVals = ReadSocket.ForceVals;
+		Debug.Log("force values : "+ForceVals[0]);
 		transform.GetChild (0).GetComponent<ThrusterControl> ().AddForce (ForceVals [0]);
 		transform.GetChild (1).GetComponent<ThrusterControl> ().AddForce (ForceVals [1]);
 		transform.GetChild (2).GetComponent<ThrusterControl> ().AddForce (ForceVals [2]);
@@ -102,10 +102,10 @@ public class ControlThrusters : MonoBehaviour {
 			//msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
             #endregion
 #if notSelf
-            //Debug.Log("sending angular")
+			/*
             Debug.Log ("Sending: Depth = " + modifiedDepth);
 			Debug.Log ("Sending: Force = " + CurAcc.y * 15000);
-			Debug.Log("Sending to topic: " + ROSPublisher.GetMessageTopic());
+			Debug.Log("Sending to topic: " + ROSPublisher.GetMessageTopic());*/
 			obj.GetComponent<ROS_Initialize> ().ros.Publish(ROSPublisher.GetMessageTopic(), msg);
 			#endif
 		}
