@@ -33,25 +33,10 @@ public class ControlThrusters : MonoBehaviour {
   		prevRot = transform.parent.transform.rotation.eulerAngles;          
     }
  
-    /* Applies the forces received from the control algorithm to the thrusters.
-	 * */
-
-    public void AddForces()
-	{
-		short[] ForceVals = ReadSocket.ForceVals;
-		Debug.Log("force values : "+ForceVals[0]);
-		transform.GetChild (0).GetComponent<ThrusterControl> ().AddForce (ForceVals [0]);
-		transform.GetChild (1).GetComponent<ThrusterControl> ().AddForce (ForceVals [1]);
-		transform.GetChild (2).GetComponent<ThrusterControl> ().AddForce (ForceVals [2]);
-		transform.GetChild (3).GetComponent<ThrusterControl> ().AddForce (ForceVals [3]);
-		transform.GetChild (4).GetComponent<ThrusterControl> ().AddForce (ForceVals [4]);
-		transform.GetChild (5).GetComponent<ThrusterControl> ().AddForce (ForceVals [5]);
-	}
-
     //run SendData() each frame:
 	void FixedUpdate () {
         Vector3 CurRot = transform.parent.transform.rotation.eulerAngles;
-        AddForces ();
+	    //AddForces ();
 			if (!Lock) {
 				Lock = true;
 				SendData ();

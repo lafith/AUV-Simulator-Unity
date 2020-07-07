@@ -14,8 +14,8 @@ public class ROS_Initialize : MonoBehaviour {
 		ros.AddPublisher (typeof(PingerPublisher));
 		ros.AddPublisher (typeof(FlarePublisher));
 		ros.AddPublisher (typeof(ROSPublisher));
-
 		ros.Connect ();
+		Debug.Log("ROS Connected!!");
 	}
 
 	// Extremely important to disconnect from ROS. Otherwise packets continue to flow

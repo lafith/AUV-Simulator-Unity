@@ -9,7 +9,7 @@ using SimpleJSON;
 public class ROSSubscriber : ROSBridgeSubscriber  {
 
 	public static short[] ForceVals = {1500, 1500, 1500, 1500, 1500, 1500};
-
+	static GameObject thrusters;
 	public new static string GetMessageTopic() {
 		return "/thruster_speeds";
 	}
@@ -27,5 +27,7 @@ public class ROSSubscriber : ROSBridgeSubscriber  {
 		Debug.Log (msg.ToYAMLString());
 		ThrusterSpeedsMsg thrustVals = (ThrusterSpeedsMsg)msg;
 		ForceVals = thrustVals.GetData ();
+		thrusters=GameObject.Find("Thrusters");
+		thrusters.GetComponent<ThrusterController>().AddForces(ForceVals);
 	}
 }
