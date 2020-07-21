@@ -15,6 +15,7 @@ public class ThrusterController : MonoBehaviour
                                      new Vector3(1,0,0),
                                      new Vector3(0,0,-1)};
         GameObject water;
+        public double thrusterFactor=16.0f;
     void Start()
     {
         water = GameObject.Find ("WaterPro_DayTime");
@@ -22,20 +23,17 @@ public class ThrusterController : MonoBehaviour
 
     public void AddForces(short[] ForceVals)
 	{
-		Debug.Log ("ForceVals = " + ForceVals[0] + " " + ForceVals[1] + " " + ForceVals[2] + " " + ForceVals[3] + " " + ForceVals[4] + " " + ForceVals[5] + " " );
-		//transform.GetChild (0).AddForce (ForceVals [0]);
-        Debug.Log(dirs[0]);
-        
-        for(int i=0;i<6;i++){
-            AddForce(transform.GetChild(i).gameObject,ForceVals[i],dirs[i]);
-        }
-        AddForce(transform.GetChild(6).gameObject,ForceVals[3],dirs[3]);
-        AddForce(transform.GetChild(7).gameObject,ForceVals[4],dirs[4]);
+		//Debug.Log ("ForceVals = " + ForceVals[0] + " " + ForceVals[1] + " " + ForceVals[2] + " " + ForceVals[3] + " " + ForceVals[4] + " " + ForceVals[5] + " " );
+        AddForce(transform.GetChild(0).gameObject,ForceVals[0],dirs[0]);
+        AddForce(transform.GetChild(1).gameObject,ForceVals[1],dirs[1]);
+        AddForce(transform.GetChild(2).gameObject,ForceVals[2],dirs[2]);
+        AddForce(transform.GetChild(3).gameObject,ForceVals[3],dirs[3]);
+        AddForce(transform.GetChild(4).gameObject,ForceVals[4],dirs[4]);
+        AddForce(transform.GetChild(5).gameObject,ForceVals[5],dirs[5]);
 	}
     public void AddForce (GameObject thruster,short ForceMag,Vector3 dir) {
-		
-		double finalForce = adjustForces (ForceMag);
-        
+		double finalForce = adjustForces (ForceMag);//*thrusterFactor;
+        Debug.Log("thruster : "+finalForce);
 		if(thruster.transform.position.y < water.transform.position.y)
 		{
 			
@@ -47,6 +45,7 @@ public class ThrusterController : MonoBehaviour
     }
     
     double adjustForces(short initial) {
+        /*
         double adjusted = 0.0f;
         if(initial>=1470.0 && initial <= 1530.0){
             adjusted=0.0;
@@ -54,8 +53,23 @@ public class ThrusterController : MonoBehaviour
         else{
             adjusted=a+(b*initial)+(c*Math.Pow(initial,2.0))+(d*Math.Pow(initial,3.0)) ;
             adjusted = adjusted * 4.44822;
-        }
-
+        }*/
+        
+        	///*
+            double adjusted = 0.0f;
+		if (initial >= 1470 && initial <= 1530) {
+			adjusted = 0.0f;
+//			Debug.Log ("Adjusted = " + adjusted + " for thruster " + thrusterNumber);
+		}
+		else if (initial > 1530) {
+			initial -= 1530;
+			adjusted = initial / 370.0f * 2.36f;
+		} else {
+			initial -= 1470;
+			adjusted = initial / 370.0f * 1.85f;
+		}
+		adjusted *= 9.8f * 1000.0f;
+        //*/
         return adjusted;
     }
 

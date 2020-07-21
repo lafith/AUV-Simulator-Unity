@@ -71,6 +71,7 @@ namespace NaughtyWaterBuoyancy
 
                     Vector3 finalVoxelForce = surfaceRotation * (forceAtSingleVoxel * submergedFactor);
                     this.rigidbody.AddForceAtPosition(finalVoxelForce, worldPoint);
+                    //Debug.Log("UpThrust "+i+" : "+finalVoxelForce);
 
                     Debug.DrawLine(worldPoint, worldPoint + finalVoxelForce.normalized, Color.blue);
                 }
