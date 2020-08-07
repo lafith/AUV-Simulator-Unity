@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 public class ThrusterController : MonoBehaviour
 {
     	double a= -1*51.348085781063,
@@ -15,10 +16,14 @@ public class ThrusterController : MonoBehaviour
                                      new Vector3(1,0,0),
                                      new Vector3(0,0,-1)};
         GameObject water;
-        public double thrusterFactor=16.0f;
+        InputField tf;
+        double thrusterFactor=1.0;
     void Start()
-    {
-        water = GameObject.Find ("WaterPro_DayTime");
+    {   
+        tf=GameObject.Find("thrusterFactor").GetComponent<InputField>();
+        tf.text=thrusterFactor.ToString();
+        water = GameObject.Find ("waterSurface");
+        
     }
 
     public void AddForces(short[] ForceVals)
@@ -32,11 +37,17 @@ public class ThrusterController : MonoBehaviour
         AddForce(transform.GetChild(5).gameObject,ForceVals[5],dirs[5]);
 	}
     public void AddForce (GameObject thruster,short ForceMag,Vector3 dir) {
-		double finalForce = adjustForces (ForceMag);//*thrusterFactor;
-        Debug.Log("thruster : "+finalForce);
+        if(tf.text!=""){
+        thrusterFactor=double.Parse(tf.text);
+        }
+        else{
+            thrusterFactor=1.0;
+        }
+        //Debug.Log(thrusterFactor);
+        double finalForce = adjustForces (ForceMag)*thrusterFactor;
+        //Debug.Log("thruster : "+finalForce);
 		if(thruster.transform.position.y < water.transform.position.y)
 		{
-			
 			thruster.GetComponent<Rigidbody> ().AddRelativeForce (
 				dir * (float)finalForce, ForceMode.Force);
 
@@ -45,7 +56,7 @@ public class ThrusterController : MonoBehaviour
     }
     
     double adjustForces(short initial) {
-        /*
+        ///*
         double adjusted = 0.0f;
         if(initial>=1470.0 && initial <= 1530.0){
             adjusted=0.0;
@@ -53,9 +64,9 @@ public class ThrusterController : MonoBehaviour
         else{
             adjusted=a+(b*initial)+(c*Math.Pow(initial,2.0))+(d*Math.Pow(initial,3.0)) ;
             adjusted = adjusted * 4.44822;
-        }*/
+        }//*/
         
-        	///*
+        	/*
             double adjusted = 0.0f;
 		if (initial >= 1470 && initial <= 1530) {
 			adjusted = 0.0f;

@@ -21,7 +21,7 @@ public class DataPublisher : MonoBehaviour
 {
     CombinedMsg msg;
     GameObject obj;
-    public bool Lock = false;
+    //public bool Lock = false;
     Vector3 prevVelocity = Vector3.zero;
     Vector3 prevRot;
 
@@ -34,10 +34,10 @@ public class DataPublisher : MonoBehaviour
     //run SendData() each frame:
 	void FixedUpdate () {
         Vector3 CurRot = transform.parent.transform.rotation.eulerAngles;
-			if (!Lock) {
-				Lock = true;
+			//if (!Lock) {
+			//	Lock = true;
 				SendData ();
-			}
+			//}
 	}
 
     /* Send sensor data as feedback to the control algorithm. The data sent includes the orientation of the vehicle,
@@ -72,6 +72,7 @@ public class DataPublisher : MonoBehaviour
                         float depth = modifiedDepth;
 
              			msg = new CombinedMsg(angular, linear,depth);
+						//Debug.Log("combined message : "+msg);
             #endregion
 
             #region for new controller

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Buoyancy : MonoBehaviour {
@@ -10,12 +11,16 @@ public class Buoyancy : MonoBehaviour {
 	public float rho = 1f;
 	Vector3 upthrust;
 	GameObject COB_Pos;
-
+	InputField linD,angD;
     void Start()
 	{
-       
+		linD=GameObject.Find("linearDrag").GetComponent<InputField>();
+		angD=GameObject.Find("angularDrag").GetComponent<InputField>();
+       	linD.text=GetComponent<Rigidbody>().drag.ToString();
+	   	angD.text=GetComponent<Rigidbody>().angularDrag.ToString();
+		
 		dims = GetComponent<Transform> ().localScale;
-		Debug.Log (dims);
+		//Debug.Log (dims);
         l = dims.x;
         h = dims.y;
         b = dims.z;
@@ -28,8 +33,12 @@ public class Buoyancy : MonoBehaviour {
     }
 
     void FixedUpdate () {
+		
+		if(Input.GetKeyDown("u")){
+			GetComponent<Rigidbody>().angularDrag=float.Parse(angD.text);
+			GetComponent<Rigidbody>().drag=float.Parse(linD.text);
+		}
 		float y = transform.position.y;
-		Debug.Log (rho);
         Vector3 MaxUpthrust =(l*h*b) * rho * Physics.gravity * -500f;
 		if (waterLevel - y > h/2)
 			upthrust = MaxUpthrust;

@@ -28,16 +28,12 @@ public class Pinger_Flare : MonoBehaviour {
 
     void Awake()
     {
-        drums = GameObject.FindGameObjectsWithTag("Drum");
+        drums = GameObject.FindGameObjectsWithTag("drum");
     }
     // Use this for initialization
     void Start () {
         obj = GameObject.Find("Main Camera");
     
-        //randomizing gate position:
-//        gate.transform.position = new Vector3(gate.transform.position.x, gate.transform.position.y, UnityEngine.Random.Range(-70,-8));
-        //randomizing gate size:
-        //gate.transform.lossyScale = new Vector3(3, 3, 3);
         //randomizing the positions of drums
         for (int i = 0; i < drums.Length; i++)
         {
