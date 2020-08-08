@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using ROSBridgeLib;
 using ROSBridgeLib.auv_msgs;
 using ROSBridgeLib.std_msgs;
+using ROSBridgeLib.geometry_msgs;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #endregion
@@ -21,14 +22,18 @@ public class DataPublisher : MonoBehaviour
 {
     CombinedMsg msg;
     GameObject obj;
-    //public bool Lock = false;
     Vector3 prevVelocity = Vector3.zero;
     Vector3 prevRot;
-
+	
+	PointMsg pt;
+	QuaternionMsg qt;
+	PoseMsg posMsg;
+	public GameObject[] props;
     void Start () {
         Time.fixedDeltaTime = 0.04f;
 		obj = GameObject.Find ("Main Camera");
-  		prevRot = transform.parent.transform.rotation.eulerAngles;          
+  		prevRot = transform.parent.transform.rotation.eulerAngles;
+
     }
  
     //run SendData() each frame:
@@ -92,5 +97,18 @@ public class DataPublisher : MonoBehaviour
 			Debug.Log("Socket error: " + e);
 		}
 	}
+
+	public void SendPos(int id){
+		if(id!=0&&id<=props.Length){
+			Vector3 posTmp=props[id-1].transform.position;
+			Quaternion rotTmp=props[id-1].transform.rotation;
+			pt=new PointMsg(posTmp.x,posTmp.y,posTmp.z);
+			qt=new QuaternionMsg(rotTmp.x,rotTmp.y,rotTmp.z,rotTmp.w);
+			posMsg=new PoseMsg(pt,qt);
+			obj.GetComponent<ROS_Initialize>().ros.Publish(PosPublisher.GetMessageTopic(),posMsg);
+		}
+		//Debug.Log(posMsg.ToYAMLString());
+		
+    }
 
 }

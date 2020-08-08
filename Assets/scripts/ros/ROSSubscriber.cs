@@ -24,7 +24,7 @@ public class ROSSubscriber : ROSBridgeSubscriber  {
 
 	// This function should fire on each ros message
 	public new static void CallBack(ROSBridgeMsg msg) {
-		Debug.Log (msg.ToYAMLString());
+		//Debug.Log (msg.ToYAMLString());
 		ThrusterSpeedsMsg thrustVals = (ThrusterSpeedsMsg)msg;
 		ForceVals = thrustVals.GetData ();
 		thrusters=GameObject.Find("Thrusters");

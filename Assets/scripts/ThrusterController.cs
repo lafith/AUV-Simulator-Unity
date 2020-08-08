@@ -16,20 +16,15 @@ public class ThrusterController : MonoBehaviour
                                      new Vector3(1,0,0),
                                      new Vector3(0,0,-1)};
         GameObject water;
-        InputField tf;
-        double thrusterFactor=1.0;
     void Start()
     {   
-        tf=GameObject.Find("thrusterFactor").GetComponent<InputField>();
-        tf.text=thrusterFactor.ToString();
         water = GameObject.Find ("waterSurface");
         
     }
 
     public void AddForces(short[] ForceVals)
 	{
-		//Debug.Log ("ForceVals = " + ForceVals[0] + " " + ForceVals[1] + " " + ForceVals[2] + " " + ForceVals[3] + " " + ForceVals[4] + " " + ForceVals[5] + " " );
-        AddForce(transform.GetChild(0).gameObject,ForceVals[0],dirs[0]);
+		AddForce(transform.GetChild(0).gameObject,ForceVals[0],dirs[0]);
         AddForce(transform.GetChild(1).gameObject,ForceVals[1],dirs[1]);
         AddForce(transform.GetChild(2).gameObject,ForceVals[2],dirs[2]);
         AddForce(transform.GetChild(3).gameObject,ForceVals[3],dirs[3]);
@@ -37,14 +32,8 @@ public class ThrusterController : MonoBehaviour
         AddForce(transform.GetChild(5).gameObject,ForceVals[5],dirs[5]);
 	}
     public void AddForce (GameObject thruster,short ForceMag,Vector3 dir) {
-        if(tf.text!=""){
-        thrusterFactor=double.Parse(tf.text);
-        }
-        else{
-            thrusterFactor=1.0;
-        }
-        //Debug.Log(thrusterFactor);
-        double finalForce = adjustForces (ForceMag)*thrusterFactor;
+    
+        double finalForce = adjustForces (ForceMag);
         //Debug.Log("thruster : "+finalForce);
 		if(thruster.transform.position.y < water.transform.position.y)
 		{
@@ -64,25 +53,10 @@ public class ThrusterController : MonoBehaviour
         else{
             adjusted=a+(b*initial)+(c*Math.Pow(initial,2.0))+(d*Math.Pow(initial,3.0)) ;
             adjusted = adjusted * 4.44822;
-        }//*/
-        
-        	/*
-            double adjusted = 0.0f;
-		if (initial >= 1470 && initial <= 1530) {
-			adjusted = 0.0f;
-//			Debug.Log ("Adjusted = " + adjusted + " for thruster " + thrusterNumber);
-		}
-		else if (initial > 1530) {
-			initial -= 1530;
-			adjusted = initial / 370.0f * 2.36f;
-		} else {
-			initial -= 1470;
-			adjusted = initial / 370.0f * 1.85f;
-		}
-		adjusted *= 9.8f * 1000.0f;
-        //*/
+        }
         return adjusted;
     }
 
+    
     
 }

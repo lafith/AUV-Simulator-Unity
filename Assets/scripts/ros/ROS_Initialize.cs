@@ -10,10 +10,10 @@ public class ROS_Initialize : MonoBehaviour {
 	void Start () {
 		ros = new ROSBridgeWebSocketConnection ("ws://127.0.0.1", 9090);
 		ros.AddSubscriber (typeof(ROSSubscriber));
+		ros.AddSubscriber(typeof(PropsIdSubscriber));
 		ros.AddPublisher (typeof(ImagePublisher));
-		//ros.AddPublisher (typeof(PingerPublisher));
-		//ros.AddPublisher (typeof(FlarePublisher));
 		ros.AddPublisher (typeof(ROSPublisher));
+		ros.AddPublisher (typeof(PosPublisher));
 		ros.Connect ();
 		Debug.Log("ROS Connected!!");
 	}

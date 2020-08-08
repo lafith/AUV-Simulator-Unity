@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Drum
+  - drum
+  - auv
+  - prop
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Post Processing
   - 
   - 
   - 
