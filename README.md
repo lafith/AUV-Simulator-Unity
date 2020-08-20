@@ -2,8 +2,6 @@
 
 A simulator used to test control algorithms written for an Autonomous Underwater Vehicle
 
-![demo](demo.gif)
-
 ![demo2](demo2.gif)
 
 This simulator was developed as a part of my work in Team Tiburon, the Autonomous Underwater Vehicle team of NIT Rourkela. It is developed using Unity3D, written in C# and obstacles were modeled using Blender.
@@ -11,6 +9,8 @@ This simulator was developed as a part of my work in Team Tiburon, the Autonomou
 The simulator works by communicating with a control algorithm running on [ROS](https://www.ros.org/) through [ROSBridgeLib](https://github.com/MathiasCiarlo/ROSBridgeLib).
 
 The simulator receives individual thruster speed values from the control algorithm, which is then converted to the forces to be applied. It send simulated sensor data to the control algorithm as feedback. Camera images are sent to the control algorithm every frame. To ensure optimal communication frequency, images are encoded to JPEG before sending.
+
+![demo](demo.gif)
 
 ## STEPS:
 
