@@ -90,7 +90,7 @@ public class DataPublisher : MonoBehaviour
 			//msg = new Ctrl_InputMsg(velocity, acceleration, angle, omega, modifiedDepth);
             #endregion
 #if notSelf
-			obj.GetComponent<ROS_Initialize> ().ros.Publish(ROSPublisher.GetMessageTopic(), msg);
+			obj.GetComponent<ROSInitializerSAUVC> ().rosSAUVC.Publish(ROSPublisher.GetMessageTopic(), msg);
 			#endif
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class DataPublisher : MonoBehaviour
 			pt=new PointMsg(posTmp.x,posTmp.y,posTmp.z);
 			qt=new QuaternionMsg(rotTmp.x,rotTmp.y,rotTmp.z,rotTmp.w);
 			posMsg=new PoseMsg(pt,qt);
-			obj.GetComponent<ROS_Initialize>().ros.Publish(PosPublisher.GetMessageTopic(),posMsg);
+			obj.GetComponent<ROSInitializerSAUVC>().rosSAUVC.Publish(PosPublisher.GetMessageTopic(),posMsg);
 		}
 		//Debug.Log(posMsg.ToYAMLString());
 		

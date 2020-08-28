@@ -11,6 +11,7 @@ public class ROSSubscriber : ROSBridgeSubscriber  {
 	public static short[] ForceVals = {1500, 1500, 1500, 1500, 1500, 1500};
 	static GameObject thrusters;
 	public new static string GetMessageTopic() {
+		//topic name is upto the user
 		return "/thruster_speeds";
 	}
 

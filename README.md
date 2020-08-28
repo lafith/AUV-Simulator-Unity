@@ -12,6 +12,11 @@ The simulator receives individual thruster speed values from the control algorit
 
 ![demo](./mischFiles/demo.gif)
 
+## Arenas:
+Currently there are three arenas:
+- SAUVC arena based on the [SAUVC 2020](https://sauvc.org/rulebook/) rulebook.
+- ROBOSUB arena based on [ROBOSUB 2019](https://arvp.org/wp-content/uploads/2019/05/2019-RoboSub-Mission-and-Scoring_v1.0.pdf).
+- SLAM test arena to test [SLAM](https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping) algorithms.
 ## STEPS:
 
 ### To use:
@@ -21,11 +26,14 @@ The simulator receives individual thruster speed values from the control algorit
 - To move around the arena:
 	- Use WASD and Arrow keys for moving around.Hold down Left or Right Shift for a faster movment.Hold Left or Right Ctrl for a slower movment.
 	- 'Q' for moving/climbing up and 'E' for moving/climbing down.
-	- Hold Space Bar and move mouse for rotation.
+	- Hold R key and move mouse for rotation.
 
 ### In the ROS end:
-- Install rosbridge-sudo apt-get install ros-kinetic-rosbridge-server.
-- Run the command roslaunch rosbridge_server rosbridge_websocket.launch.
-- Run rosun watchdog watchdog.
-- Run simulator_receive_image simulator_receive_image.
-  
+- Install rosbridge:
+```console
+foo@bar:~$ sudo apt-get install ros-<rosdistro>-rosbridge-server
+```
+- Run the command:
+```console
+roslaunch rosbridge_server rosbridge_websocket.launch
+```  

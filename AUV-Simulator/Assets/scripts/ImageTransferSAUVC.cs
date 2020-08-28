@@ -25,7 +25,7 @@ public class ImageTransferSAUVC : MonoBehaviour
     RenderTexture frontImage;
     Texture2D imageToSend;
     Texture2D imageToSend2;
-    bool firstSend = true;
+    //bool firstSend = true;
     public bool Lock = false;
     GameObject obj;
     StringMsg imgMsg;
@@ -88,9 +88,8 @@ public class ImageTransferSAUVC : MonoBehaviour
         {
 #if self
                 imgMsg = new StringMsg(imgToSend.ToString());
-                obj.GetComponent<ROS_Initialize>().ros.Publish(ImagePublisher.GetMessageTopic(), imgMsg);
-                //Debug.Log("Sending to topic: " + ImagePublisher.GetMessageTopic());
-                //Debug.Log(imgMsg);
+                obj.GetComponent<ROSInitializerSAUVC>().rosSAUVC.Publish(ImagePublisher.GetMessageTopic(), imgMsg);
+
 #endif
             }
             catch (Exception e)
