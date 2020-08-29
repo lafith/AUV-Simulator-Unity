@@ -7,13 +7,16 @@ public class sceneManagerROBOSUB : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 initPos,auvPos;
+    Quaternion initRot;
     GameObject[] drums;
-    GameObject yellowFlare,obj,auv,bouy;
+    GameObject yellowFlare,obj,auv,bouy,preQualDock;
     void Start()
     {
         obj = GameObject.Find("Main Camera");
         //initial position of Main camera
         initPos = transform.position;
+        initRot=transform.rotation;
+        //auv
         auv = GameObject.FindWithTag("auv");
         auvPos=auv.transform.position;
         //fog:
@@ -22,6 +25,7 @@ public class sceneManagerROBOSUB : MonoBehaviour
         RenderSettings.fogDensity = 0.05f;
 
         bouy=GameObject.Find("SlayVampires");
+        preQualDock=GameObject.Find("preQualificationdock");
     }
 
     //Reset button which bring auv & the camera back to their initial position
@@ -29,7 +33,7 @@ public class sceneManagerROBOSUB : MonoBehaviour
     {
         //resetting camera
         transform.position = initPos;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = initRot;//Quaternion.Euler(0, 0, 0);
         auv.GetComponent<Rigidbody>().velocity = Vector3.zero;
         auv.transform.rotation = Quaternion.Euler(0, 0, 0);
         auv.transform.position = auvPos;
@@ -56,6 +60,13 @@ public class sceneManagerROBOSUB : MonoBehaviour
         Debug.Log ("ROS-ROBOSUB Disconnecting!");
         SceneManager.LoadScene("MainMenu");
 
+    }
+
+    public void toPreQualifier(){
+        auv.transform.position=preQualDock.transform.position+new Vector3(2,0,0);
+        auv.transform.rotation=Quaternion.Euler(0, 90, 0);
+        transform.position=preQualDock.transform.position+new Vector3(0,0.5f,0);
+        transform.rotation=Quaternion.Euler(10, 90, 0);
     }
     void Update()
     {

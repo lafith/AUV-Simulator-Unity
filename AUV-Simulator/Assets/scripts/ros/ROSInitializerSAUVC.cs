@@ -15,6 +15,7 @@ public class ROSInitializerSAUVC : MonoBehaviour {
 		rosSAUVC.AddPublisher (typeof(ImagePublisher));
 		rosSAUVC.AddPublisher (typeof(ROSPublisher));
 		rosSAUVC.AddPublisher (typeof(PosPublisher));
+		rosSAUVC.AddPublisher (typeof(PingerPublisher));
 		rosSAUVC.Connect ();
 		Debug.Log("ROS-SAUVC Connected!!");
 	}
