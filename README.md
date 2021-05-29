@@ -1,6 +1,7 @@
 # AUV-Simulator
 
-A simulator used to test control algorithms written for an Autonomous Underwater Vehicle
+A simulator used to test control algorithms written for an Autonomous Underwater Vehicle.
+- *Initial implementation was done by [Aryaman Gupta](https://github.com/aryaman-gupta/AUV-Simulator).*
 
 ![demo2](./mischFiles/demo2.gif)
 
